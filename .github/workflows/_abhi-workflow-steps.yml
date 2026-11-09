@@ -1,0 +1,30 @@
+name: abhi_workflow_steps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job-1:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "This is job-1"
+  
+  job-2:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "This is job-2"
+  
+  job-3:
+    runs-on: ubuntu-24.04
+    needs: 
+      - job-1
+      - job-2
+    steps:
+      - run: "This is job-3, depending on job-1 and job-2"
+  
+  job-4:
+    runs-on: ubuntu-24.04
+    needs:
+      - job-3
+    steps:
+      - run: "this is job-4, depending on job-3"
