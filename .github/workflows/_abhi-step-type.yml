@@ -1,0 +1,23 @@
+name: abhi_step_types
+
+on:
+  workflow_dispatch:
+
+jobs:
+  say-hello-from-bash:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "hello from bash"
+  
+  say-hello-from-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: print("hello from python")
+        shell: python
+  
+  say-hello-from-another-action:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/hello-world-javascript-action@081a6d193d1dcb38460df1e6927486d748730f9d # v1.1
+        with:
+          who-to-greet: "from an action in the GitHub Action marketplace! 👋"
