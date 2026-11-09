@@ -1,0 +1,30 @@
+name: abhi_trigger_n_fillters
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - "example-branch/*"
+  
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+    paths:
+    - "03-core-features/filters/*.md"
+    - "!03-core-features/filters/*.txt"
+  
+  schedule:
+    - cron: "0 0 * * *"
+  
+jobs:
+  eco_event:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Dump full events JSON
+        run: |
+          echo "=== $GITHUB_EVENT_NAME payload ==="
+          cat "$GITHUB_EVENT_PATH"
