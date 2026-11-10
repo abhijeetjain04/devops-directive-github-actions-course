@@ -11,5 +11,3 @@ jobs:
       - uses: actions/checkout@v4
       - id: abhi-composite-action
         uses: ./06-authoring-actions/composite-action
-        with:
-          who-to-greet: "from composite action in hello-world-1!"
