@@ -1,0 +1,25 @@
+name: 'abhi_action'
+
+inputs:
+  who-to-greet:
+    description: 'who to greet'
+    required: true
+    default: 'world'
+outputs:
+  random-number:
+    description: 'random number'
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+    
+runs:
+using: 'composite'
+steps:
+  - name: set greetings
+    run: echo "Hello $INPUT_WHO_TO_GREET"
+    shell: bash
+    env:
+      INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+  - name: random number generator
+    run: echo "Random number = $((echo $RANDOM))" >> $GITHUB_OUTPUT
+    shell: bash
+    id: random-number-generator
